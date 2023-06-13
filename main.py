@@ -25,5 +25,20 @@ def convert():
                 yaml.dump(python_dict, file1)
                 file1.close()
 
+    elif type == "yaml":
+        if type_to == "xml":
+            with open(f'{file_type_yaml}') as yaml_file:
+                python_dict = yaml.load(yaml_file, Loader=SafeLoader)
+                file = open(file_type_xml, "w")
+                xml_string = xmltodict.unparse(python_dict, output=file)
+                file.close()
+                yaml_file.close()
+        elif type_to == "json":
+            with open(f'{file_type_yaml}') as yaml_file:
+                python_dict = yaml.load(yaml_file, Loader=SafeLoader)
+                file = open(file_type_json, "w")
+                json.dump(python_dict, file)
+                file.close()
+
 
 convert()
