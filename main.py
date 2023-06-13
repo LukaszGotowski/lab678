@@ -40,5 +40,21 @@ def convert():
                 json.dump(python_dict, file)
                 file.close()
 
+    elif type == "xml":
+        if type_to == "json":
+            with open(f'{file_type_xml}') as file:
+                data = xmltodict.parse(file.read())
+                js = json.dumps(data)
+                inp = input("Podaj nazwe pliku : ")
+                with open((f'{inp}.json'), "w") as file:
+                    file.write(js)
+        elif type_to == "yaml":
+            with open(f'{file_type_xml}') as xml_file:
+                xml_string = xml_file.read()
+                python_dict = xmltodict.parse(xml_string)
+                file = open("plik.yaml", "w")
+                yaml.dump(python_dict, file)
+                file.close()
+
 
 convert()
